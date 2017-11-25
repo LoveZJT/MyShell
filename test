@@ -1,0 +1,2 @@
+ls -l | wc -l | less
+cat MyShell.cpp | wc | less
