@@ -17,17 +17,21 @@
 #include<fstream>
 using namespace std;
 
+#define RESET   "\033[0m"
+#define RED     "\033[31m"  
+#define GREEN   "\033[1m\033[32m"
+
 int main()
 {
 	string line,newfile;
 	int count=0,sfi=dup(STDIN_FILENO),sfo=dup(STDOUT_FILENO);
-	cout<<"MyShell$";
+	cout<<GREEN<<"MyShell$"<<RESET;
 	//while(count<10)
 	while(getline(cin,line))
 	{
 		if(line=="")
 		{
-			cout<<"MyShell$";
+			cout<<GREEN<<"MyShell$"<<RESET;
 			continue;
 		}
 		//cout<<"getline"<<line<<endl;
@@ -42,7 +46,7 @@ int main()
 			char newdir[100];
 			ss>>newdir;
 			chdir(newdir);
-			cout<<"MyShell$";
+			cout<<GREEN<<"MyShell$"<<RESET;
 			continue;
 		}
 		else if(cmd=="wait")
@@ -51,7 +55,7 @@ int main()
 			ss>>pid;
 			waitpid(pid,NULL,0);
 			cout<<"PID "<<pid<<" finish"<<endl;
-			cout<<"MyShell$";
+			cout<<GREEN<<"MyShell$"<<RESET;
 			continue;
 		}
 		int i=0;
@@ -166,7 +170,7 @@ int main()
 				cout<<endl;*/
 				//cout<<"hello"<<endl;	
 				execvp(cmd.c_str(),argv);
-				cout<<"Child process failed!"<<endl;
+				cout<<RED<<"Child process failed!"<<RESET<<endl;
 				exit(0);
 			}
 			else
@@ -197,7 +201,7 @@ int main()
 		remove("youdontknow");
 		remove("youdontknow2");
 		cout<<"Child process finish!"<<endl;
-		cout<<"MyShell$";
+		cout<<GREEN<<"MyShell$"<<RESET;
 	}
 	return 0;
 }
